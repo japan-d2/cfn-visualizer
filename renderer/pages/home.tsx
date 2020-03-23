@@ -5,6 +5,8 @@ import Link from 'next/link';
 import AWS from 'aws-sdk';
 import CloudFormationGraph from 'cloudformation-graph'
 
+import LineChart from '../components/LineChart'
+
 const Home = (props) => {
   return (
     <React.Fragment>
@@ -20,6 +22,7 @@ const Home = (props) => {
         </p>
         <img src="/images/logo.png" />
       </div>
+      <LineChart />
     </React.Fragment>
   );
 };
