@@ -29,25 +29,31 @@ const Home = (props) => {
 
 Home.getInitialProps = async () => {
 
-  const cloudformation = new AWS.CloudFormation({
-    accessKeyId: process.env.aws_access_key_id,
-    secretAccessKey: process.env.aws_secret_access_key,
-    region: 'ap-northeast-1'
-  });
+  try {
+    const cloudformation = new AWS.CloudFormation({
+      accessKeyId: process.env.aws_access_key_id,
+      secretAccessKey: process.env.aws_secret_access_key,
+      region: 'ap-northeast-1'
+    });
 
-  // get StackResources
-  const resources = await cloudformation.listStackResources({
-    StackName: 'nakayama-cfn-visualize-test02', /* required */
-  }).promise()
-  console.log(resources.$response)
+    // get StackResources
+    const resources = await cloudformation.listStackResources({
+      StackName: 'nakayama-cfn-visualize-test02', /* required */
+    }).promise()
+    console.log(resources.$response)
 
-  // get Template
-  const template = await cloudformation.getTemplate({
-    StackName: 'nakayama-cfn-visualize-test02'
-  }).promise();
-  const cfg = new CloudFormationGraph();
-  const ret = cfg.graph(template.TemplateBody)
-  console.log(ret)
+    // get Template
+    const template = await cloudformation.getTemplate({
+      StackName: 'nakayama-cfn-visualize-test02'
+    }).promise();
+    const cfg = new CloudFormationGraph();
+    const ret = cfg.graph(template.TemplateBody)
+    console.log(ret)
+  } catch (error) {
+
+  }
+
+
 
   return {}
 
