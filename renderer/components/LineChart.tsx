@@ -27,13 +27,15 @@ const LineChart = () => {
         { "name": "b", "width": 60, "height": 40, "x": 50, "y": 50 },
         { "name": "c", "width": 60, "height": 40, "x": 50, "y": 50 },
         { "name": "d", "width": 60, "height": 40, "x": 50, "y": 50 },
-        { "name": "e", "width": 60, "height": 40, "x": 50, "y": 50 },
+        { "name": "e", "width": 60, "height": 40, "x": 50, "y": 50 }
       ],
       "links": [
         { "source": 0, "target": 1 },
         { "source": 1, "target": 2 },
         { "source": 2, "target": 0 },
-        { "source": 2, "target": 3 }
+        { "source": 2, "target": 3 },
+        { "source": 4, "target": 3 },
+        { "source": 4, "target": 2 }
       ]
     }
 
@@ -68,13 +70,20 @@ const LineChart = () => {
     node.append("title")
       .text(d => d.name);
 
-    cola.on("tick", function () {
+    cola.on("tick", () => {
+
+      function fetchNode(source: (typeof graph)['nodes'][0] | number) {
+        if (typeof source === 'number') {
+          return node.data()[source]
+        }
+        return source
+      }
 
       link
-        .attr("x1", (d: any) => d.source.x) //型が死んでる，なぜ
-        .attr("y1", (d: any) => d.source.y)
-        .attr("x2", (d: any) => d.target.x)
-        .attr("y2", (d: any) => d.target.y)
+        .attr("x1", (d) => fetchNode(d.source).x)
+        .attr("y1", (d) => fetchNode(d.source).y)
+        .attr("x2", (d) => fetchNode(d.target).x)
+        .attr("y2", (d) => fetchNode(d.target).y)
 
       node
         .attr("x", d => d.x - d.width / 2)
