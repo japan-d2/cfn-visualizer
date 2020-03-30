@@ -21,10 +21,8 @@ AWS CloudFormation のデプロイ結果をビジュアライズするデスク�
 
 ### 開発環境やメタデータ
 
-OSS 化を見据えたロードマップです
-
 - [ ] GtiHub Actions による PR のチェック
-  - [ ] `npm run build` が通る
+  - [x] `npm run build` が通る
   - [ ] `sample/` 内の yaml を正しく解釈し表示する
 - [ ] LICENSE の検討(現在は仮です)
 - [ ] アイコン( `resource/` )の作成と設定
