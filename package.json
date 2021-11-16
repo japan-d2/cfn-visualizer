@@ -10,7 +10,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "aws-sdk": "^2.635.0",
+    "aws-sdk": "^2.814.0",
     "cloudformation-graph": "^1.2.0",
     "d3": "^5.15.0",
     "electron-serve": "^0.4.1",
